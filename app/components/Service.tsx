@@ -40,7 +40,7 @@ const services = [
 
 const PremiumServices = () => {
   return (
-    <section className="py-24 px-6 bg-white">
+    <section className="py-24 px-6 bg-[#f8f9fa]">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">
           Our Premium Services
@@ -53,7 +53,7 @@ const PremiumServices = () => {
           {services.map((service, i) => (
             <div 
               key={i} 
-              className="bg-[#f9fbfd] p-10 rounded-3xl text-left border border-transparent hover:border-gray-200 transition-all duration-300 hover:shadow-xl group"
+              className="bg-white p-10 rounded-3xl text-left border border-transparent hover:border-gray-200 transition-all duration-300 hover:shadow-xl group"
             >
               {/* Icon Container */}
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-8 transition-transform group-hover:scale-110 ${service.color}`}>

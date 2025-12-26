@@ -11,12 +11,14 @@ import LatestInsights from "./components/LatestInsights";
 import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
 import UpcomingExams from "./components/exams";
+import ExploreProgramsComponent from "./components/ExplorePrograms";
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <div className="bg-[#f8f9fa] w-full">
       <Navbar />
       <Hero />
+      <ExploreProgramsComponent/>
       <ExploreColleges />
       <UpcomingExams/>
       <Category />

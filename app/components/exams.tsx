@@ -82,7 +82,7 @@ const exams: Exam[] = [
 
 export default function UpcomingExams() {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-10  min-h-screen">
+    <section className="max-w-7xl bg-[#f8f9fa] mx-auto px-6 py-10  min-h-screen">
       <h2 className="text-3xl font-bold mb-8 text-gray-800">Upcoming Exams</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -127,20 +127,20 @@ function ExamCard({ exam }: { exam: Exam }) {
         {/* Date */}
         <div className="mt-6 bg-blue-50 rounded-lg p-3 border border-blue-100">
           <div className="flex items-center gap-2 mb-1">
-            <Calendar className="w-4 h-4 text-blue-600" />
+            <Calendar className="w-4 h-4 text-[#0060d1]" />
             <p className="text-xs text-gray-600 font-medium">Exam Date</p>
           </div>
-          <p className="text-blue-600 font-bold text-sm ml-6">{exam.date}</p>
+          <p className="text-[#0060d1] font-bold text-sm ml-6">{exam.date}</p>
         </div>
       </div>
 
       {/* Footer Buttons */}
       <div className="grid grid-cols-2  gap-0 border-t border-blue-100">
-        <button className="bg-white text-blue-600 py-3.5 text-sm font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 border-r border-blue-100">
+        <button className="bg-white text-[#0060d1] py-3.5 text-sm font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 border-r border-blue-100">
           <Info className="w-4 h-6" />
           View
         </button>
-        <button className="bg-blue-600 text-white py-3.5 text-sm font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+        <button className="bg-[#0060d1] text-white py-3.5 text-sm font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
           <ExternalLink className="w-4 h-6" />
           Apply
         </button>

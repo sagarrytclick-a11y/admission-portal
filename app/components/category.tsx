@@ -46,7 +46,7 @@ const CATEGORIES: Category[] = [
 
 const Category: React.FC = () => {
   return (
-    <section className="bg-white py-16 px-8 font-sans">
+    <section className="bg-[#f8f9fa] py-16 px-8 font-sans">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-10">

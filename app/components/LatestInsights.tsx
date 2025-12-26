@@ -30,10 +30,7 @@ export default function LatestInsights() {
       {/* Header */}
       <div className="flex justify-between items-center mb-10">
         <h2 className="text-3xl font-bold text-gray-900">Latest Insights</h2>
-        <a
-          href="#"
-          className="text-blue-600 font-medium hover:underline"
-        >
+        <a href="#" className="text-blue-600 font-medium hover:underline">
           View all posts
         </a>
       </div>
@@ -64,9 +61,7 @@ export default function LatestInsights() {
                 {post.title}
               </h3>
 
-              <p className="mt-2 text-sm text-gray-600">
-                {post.desc}
-              </p>
+              <p className="mt-2 text-sm text-gray-600">{post.desc}</p>
 
               <a
                 href="#"
