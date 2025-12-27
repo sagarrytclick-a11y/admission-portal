@@ -98,51 +98,48 @@ export default function UpcomingExams() {
 
 function ExamCard({ exam }: { exam: Exam }) {
   return (
-    <div className="bg-white border border-blue-100 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+    <div className="group bg-white border border-gray-100 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-blue-400 hover:shadow-md">
       
-      <div className="p-6">
-        {/* Top */}
-        <div className="flex items-center justify-between mb-5">
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg font-bold text-sm">
+      <div className="p-5">
+        {/* Top Header */}
+        <div className="flex items-start justify-between mb-4">
+          <div className="h-10 w-12 flex items-center justify-center bg-gray-50 rounded-lg border border-gray-100 text-[10px] font-black text-gray-700 uppercase tracking-tighter text-center leading-tight">
             {exam.logo}
           </div>
-
-          <span
-            className={`text-xs px-3 py-1.5 rounded-full font-semibold ${
-              exam.mode === "Online"
-                ? "bg-blue-50 text-blue-600 border border-blue-200"
-                : "bg-purple-50 text-purple-600 border border-purple-200"
-            }`}
-          >
+          <span className={`text-[10px] uppercase tracking-wider px-2 py-1 rounded-md font-bold ${
+            exam.mode === "Online" 
+              ? "bg-green-50 text-green-600" 
+              : "bg-orange-50 text-orange-600"
+          }`}>
             {exam.mode}
           </span>
         </div>
 
-        {/* Title */}
-        <h3 className="font-bold text-xl text-gray-800 mb-1">{exam.name}</h3>
-        {exam.title && (
-          <p className="text-sm text-gray-500 mb-4">{exam.title}</p>
-        )}
+        {/* Info Section */}
+        <div className="mb-6">
+          <h3 className="font-bold text-lg text-gray-900 leading-tight group-hover:text-blue-600 transition-colors">
+            {exam.name}
+          </h3>
+          <p className="text-xs text-gray-400 mt-1 font-medium italic">
+            {exam.title || "Entrance Exam"}
+          </p>
+        </div>
 
-        {/* Date */}
-        <div className="mt-6 bg-blue-50 rounded-lg p-3 border border-blue-100">
-          <div className="flex items-center gap-2 mb-1">
-            <Calendar className="w-4 h-4 text-[#0060d1]" />
-            <p className="text-xs text-gray-600 font-medium">Exam Date</p>
-          </div>
-          <p className="text-[#0060d1] font-bold text-sm ml-6">{exam.date}</p>
+        {/* Simplified Date */}
+        <div className="flex items-center gap-2 text-gray-600">
+          <Calendar className="w-3.5 h-3.5 text-blue-500" />
+          <span className="text-xs font-semibold">{exam.date}</span>
         </div>
       </div>
 
-      {/* Footer Buttons */}
-      <div className="grid grid-cols-2  gap-0 border-t border-blue-100">
-        <button className="bg-white text-[#0060d1] py-3.5 text-sm font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 border-r border-blue-100">
-          <Info className="w-4 h-6" />
-          View
+      {/* Action Footer */}
+      <div className="px-5 pb-5 mt-2 flex gap-3">
+        <button className="flex-1 text-[13px] font-bold text-gray-600 hover:text-blue-600 transition-colors py-2">
+          Details
         </button>
-        <button className="bg-[#0060d1] text-white py-3.5 text-sm font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
-          <ExternalLink className="w-4 h-6" />
-          Apply
+        <button className="flex-[1.5] bg-blue-600 hover:bg-blue-700 text-white text-[13px] font-bold py-2 rounded-lg transition-all flex items-center justify-center gap-2 shadow-sm shadow-blue-200">
+          Apply Now
+          <ExternalLink className="w-3 h-3" />
         </button>
       </div>
     </div>

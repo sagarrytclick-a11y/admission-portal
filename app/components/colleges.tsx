@@ -224,59 +224,59 @@ const ExploreColleges: React.FC = () => {
 
           {/* Sidebar Section */}
           <div className="flex flex-col gap-6">
-            {/* Admission Tips */}
-            <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-              <h3 className="flex items-center gap-2 font-bold text-gray-900 mb-6">
-                💡 <span className="text-sm">Admission Tips</span>
-              </h3>
-              <div className="space-y-6">
-                {articles.map((tip, i) => (
-                  <div key={i} className="flex gap-3 group cursor-pointer">
-                    <div className="w-12 h-12 bg-gray-100 rounded-lg shrink-0 overflow-hidden relative">
-                      {/* Smaller thumbnails for tips */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300" />
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
-                        {tip.title}
-                      </h4>
-                      <p className="text-[10px] text-gray-400 mt-1 uppercase">
-                        {tip.time}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <button className="w-full text-center text-xs font-bold text-blue-600 mt-8 hover:underline">
-                View All Articles
-              </button>
-            </div>
 
-            {/* College of the Month */}
-            <div className="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 shadow-sm">
-              <h3 className="font-bold text-gray-900 text-sm mb-4">
-                College of the Month
-              </h3>
-              <div className="flex gap-3 mb-4">
-                <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-white text-xs">
-                  D
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">
-                    Duke University
-                  </h4>
-                  <p className="text-[10px] text-gray-500">Durham, NC</p>
-                </div>
-              </div>
-              <p className="text-[11px] text-gray-600 leading-relaxed mb-6">
-                Known for its beautiful Gothic campus and top-tier research
-                programs, Duke offers a unique blend...
-              </p>
-              <button className="w-full py-2.5 bg-white text-blue-600 text-xs font-bold rounded-xl border border-blue-100 hover:bg-blue-50 transition-colors">
-                Explore Duke
-              </button>
-            </div>
-          </div>
+{/* Latest News */}
+<div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+  <h3 className="font-semibold text-gray-900 text-sm mb-6">
+    Latest News
+  </h3>
+
+  <div className="space-y-5">
+    {articles.map((tip, i) => (
+      <div key={i} className="group cursor-pointer">
+        <h4 className="text-sm font-semibold text-gray-800 group-hover:text-blue-600 transition">
+          {tip.title}
+        </h4>
+        <p className="text-[11px] text-gray-400 mt-1 uppercase">
+          {tip.time}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  <button className="w-full text-center text-xs font-semibold text-blue-600 mt-8 hover:underline">
+    View All News
+  </button>
+</div>
+
+{/* College of the Month */}
+<div className="bg-blue-50/60 p-6 rounded-2xl border border-blue-100 shadow-sm">
+  <h3 className="font-semibold text-gray-900 text-sm mb-4">
+    College of the Month
+  </h3>
+
+  <div className="mb-3">
+    <h4 className="text-sm font-semibold text-gray-900">
+      Duke University
+    </h4>
+    <p className="text-[11px] text-gray-500">
+      Durham, North Carolina
+    </p>
+  </div>
+
+  <p className="text-[12px] text-gray-600 leading-relaxed mb-6">
+    Duke University is known for its strong academic reputation, research-driven
+    culture, and vibrant campus life. It consistently ranks among the top
+    universities worldwide.
+  </p>
+
+  <button className="w-full py-2.5 bg-white text-blue-600 text-xs font-semibold rounded-xl border border-blue-100 hover:bg-blue-50 transition">
+    Explore College
+  </button>
+</div>
+
+</div>
+
         </div>
 
         {/* Load More Button */}

@@ -27,52 +27,117 @@ const posts = [
 export default function LatestInsights() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
+      
       {/* Header */}
       <div className="flex justify-between items-center mb-10">
-        <h2 className="text-3xl font-bold text-gray-900">Latest Insights</h2>
+        <h2 className="text-3xl font-bold text-gray-900">
+          Latest Insights
+        </h2>
         <a href="#" className="text-blue-600 font-medium hover:underline">
-          View all posts
+          View all
         </a>
       </div>
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {posts.map((post, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden"
-          >
-            <Image
-              src={post.image}
-              alt={post.title}
-              width={500}
-              height={300}
-              className="w-full h-52 object-cover"
-            />
-
-            <div className="p-6">
+      {/* Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        
+        {/* LEFT: Blog List */}
+        <div className="lg:col-span-2 space-y-6">
+          {posts.map((post, index) => (
+            <div
+              key={index}
+              className="bg-white border border-gray-100 rounded-xl p-6 hover:shadow-sm transition"
+            >
               <span
                 className={`text-xs font-semibold uppercase tracking-wide ${post.categoryColor}`}
               >
                 {post.category}
               </span>
 
-              <h3 className="mt-3 text-lg font-semibold text-gray-900">
+              <h3 className="mt-2 text-xl font-semibold text-gray-900">
                 {post.title}
               </h3>
 
-              <p className="mt-2 text-sm text-gray-600">{post.desc}</p>
+              <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                {post.desc}
+              </p>
 
               <a
                 href="#"
-                className="inline-block mt-4 text-sm font-semibold text-gray-900 hover:underline"
+                className="inline-block mt-3 text-sm font-semibold text-blue-600 hover:underline"
               >
-                Read More →
+                Read article →
               </a>
             </div>
+          ))}
+
+          {/* Load More */}
+          <div className="pt-4">
+            <button className="px-6 py-3 text-sm font-semibold text-white bg-[#3182ce] hover:bg-blue-700 rounded-lg transition">
+              Load More Blogs
+            </button>
           </div>
-        ))}
+        </div>
+
+        {/* RIGHT: Sidebar */}
+        <aside className="space-y-6">
+          
+          {/* Popular Topics */}
+          <div className="bg-white border border-gray-100 rounded-xl p-6">
+            <h4 className="text-sm font-semibold text-gray-900 mb-4">
+              Popular Topics
+            </h4>
+
+            <div className="flex flex-wrap gap-2">
+              {[
+                "Admissions",
+                "Entrance Exams",
+                "Scholarships",
+                "Campus Life",
+                "Placements",
+              ].map((topic) => (
+                <span
+                  key={topic}
+                  className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer transition"
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Helpful Links */}
+          <div className="bg-white border border-gray-100 rounded-xl p-6">
+            <h4 className="text-sm font-semibold text-gray-900 mb-4">
+              Helpful Resources
+            </h4>
+
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li>
+                <a href="#" className="hover:text-blue-600">
+                  College Admission Process
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-600">
+                  Entrance Exam Calendar
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-600">
+                  Compare Colleges
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-600">
+                  Scholarship Guide
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
       </div>
     </section>
   );
 }
+

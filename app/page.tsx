@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
 import ExploreColleges from "./components/colleges";
 import Category from "./components/category";
 import StatsSection from "./components/stats";
@@ -16,17 +15,17 @@ import ExploreProgramsComponent from "./components/ExplorePrograms";
 export default function Home() {
   return (
     <div className="bg-[#f8f9fa] w-full">
-      <Navbar />
+    
       <Hero />
       <ExploreProgramsComponent/>
       <ExploreColleges />
+      <LatestInsights/>
       <UpcomingExams/>
       <Category />
       <StatsSection/>
       <PremiumServices/>
       <ProcessSteps/>
       <StudentStoriesExact/>
-      <LatestInsights/>
       <CTASection/>
       <Footer/>
     </div>

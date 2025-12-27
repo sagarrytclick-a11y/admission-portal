@@ -1,202 +1,133 @@
 "use client"
 
-import Navbar from '@/app/components/Navbar';
-import { GraduationCap, MapPin, DollarSign, Users, TrendingUp, Calendar, FileText, Video } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import { GraduationCap, BookOpen, Award, Users, MapPin, Download, Phone, ChevronRight, Calendar, DollarSign, FileText } from 'lucide-react';
 
-const COLLEGES = [
-  {
-    slug: "iit-bombay",
-    name: "IIT Bombay",
-    established: "1958",
-    location: "Mumbai, Maharashtra",
-    type: "Public",
-    duration: "4 Year",
-    tuition: "₹2,25,000/yr",
-    acceptance: "0.8%",
-    undergrad: "5,200",
-    entranceExam: "JEE Adv: 99.9%ile",
-    topRated: true,
-    logo: "🏛️",
-    avgGPA: "9.2",
-    gradRate: "98%",
-    ratio: "8:1",
-    description: "IIT Bombay is a premier research university in Mumbai, Maharashtra. The campus occupies 550 acres in Powai, one of the most prestigious engineering institutions in India, known for its academic strength, research excellence, and proximity to major tech hubs.",
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZXxlbnwwfHwwfHx8MA%3D%3D",
-    admissions: {
-      earlyDeadline: "May 15, 2024",
-      regularDeadline: "June 30, 2024",
-      applicationFee: "₹2,500",
-      jeeRange: "Rank 1-500"
-    },
-    topMajors: [
-      { name: "Computer Science", school: "School of Engineering" },
-      { name: "Electrical Engineering", school: "School of Engineering" },
-      { name: "Mechanical Engineering", school: "School of Engineering" }
-    ]
-  },
-  {
-    slug: "iit-delhi",
-    name: "IIT Delhi",
-    established: "1961",
-    location: "New Delhi, Delhi",
-    type: "Public",
-    duration: "4 Year",
-    tuition: "₹2,25,000/yr",
-    acceptance: "0.9%",
-    undergrad: "4,800",
-    entranceExam: "JEE Adv: 99.8%ile",
-    topRated: true,
-    logo: "🎓",
-    avgGPA: "9.1",
-    gradRate: "97%",
-    ratio: "9:1",
-    description: "IIT Delhi is one of India's leading engineering and technology institutions located in the capital city. Known for cutting-edge research, innovation, and producing industry leaders across various sectors.",
-    image: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMGNhbXB1c3xlbnwwfHwwfHx8MA%3D%3D",
-    admissions: {
-      earlyDeadline: "May 10, 2024",
-      regularDeadline: "June 25, 2024",
-      applicationFee: "₹2,500",
-      jeeRange: "Rank 1-600"
-    },
-    topMajors: [
-      { name: "Computer Science", school: "School of Engineering" },
-      { name: "Electronics Engineering", school: "School of Engineering" },
-      { name: "Civil Engineering", school: "School of Engineering" }
-    ]
-  },
-  {
-    slug: "bits-pilani",
-    name: "BITS Pilani",
-    established: "1964",
-    location: "Pilani, Rajasthan",
-    type: "Private",
-    duration: "4 Year",
-    tuition: "₹4,50,000/yr",
-    acceptance: "2.5%",
-    undergrad: "4,200",
-    entranceExam: "BITSAT: 320+",
-    topRated: false,
-    logo: "⚙️",
-    avgGPA: "8.8",
-    gradRate: "95%",
-    ratio: "10:1",
-    description: "BITS Pilani is a deemed university offering engineering and science programs. Known for its flexible curriculum, entrepreneurial culture, and strong industry connections.",
-    image: "https://images.unsplash.com/photo-1592066575517-58df903152f2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMGJ1aWxkaW5nfGVufDB8fDB8fHww",
-    admissions: {
-      earlyDeadline: "April 20, 2024",
-      regularDeadline: "June 10, 2024",
-      applicationFee: "₹3,400",
-      jeeRange: "BITSAT 300+"
-    },
-    topMajors: [
-      { name: "Computer Science", school: "School of Engineering" },
-      { name: "Electronics & Instrumentation", school: "School of Engineering" },
-      { name: "Chemical Engineering", school: "School of Engineering" }
-    ]
-  }
-];
+const CollegeDetailPage: React.FC = () => {
+  const [activeTab, setActiveTab] = useState("info");
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-const SIMILAR_COLLEGES = [
-  { name: "IIT Madras", location: "Chennai, TN", logo: "I", slug: "iit-madras" },
-  { name: "IIT Kanpur", location: "Kanpur, UP", logo: "I", slug: "iit-kanpur" },
-  { name: "NIT Trichy", location: "Tiruchirappalli, TN", logo: "N", slug: "nit-trichy" }
-];
+  const slides = [
+    'https://images.unsplash.com/photo-1562774053-701939374585?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZXxlbnwwfHwwfHx8MA%3D%3D',
+    'https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMGNhbXB1c3xlbnwwfHwwfHx8MA%3D%3D',
+    'https://images.unsplash.com/photo-1592066575517-58df903152f2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMGJ1aWxkaW5nfGVufDB8fDB8fHww'
+  ];
 
-// Function to get similar colleges excluding the current one
-const getSimilarColleges = (currentSlug: string) => {
-  return SIMILAR_COLLEGES.filter(college => college.slug !== currentSlug);
-};
-
-export default function CollegeDetailPage() {
-  const params = useParams();
-  const slug = params.slug as string;
-  
-  const [college, setCollege] = useState(COLLEGES[0]); // Default to first college
-  const [similarColleges, setSimilarColleges] = useState(SIMILAR_COLLEGES);
-  const [activeTab, setActiveTab] = useState("overview");
-  const [loading, setLoading] = useState(true);
-  
   useEffect(() => {
-    if (slug) {
-      // Find the college by slug
-      const foundCollege = COLLEGES.find(c => c.slug === slug);
-      
-      if (foundCollege) {
-        setCollege(foundCollege);
-        // Get similar colleges (excluding current one)
-        setSimilarColleges(getSimilarColleges(slug));
-      } else {
-        // Handle case where slug is not found
-        console.error(`College with slug "${slug}" not found`);
-        // Optionally redirect to 404 or show error
-      }
-      
-      setLoading(false);
-    }
-  }, [slug]);
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading college details...</p>
-        </div>
-      </div>
-    );
-  }
+  const tabs = [
+    'Info', 'Courses & Fees', 'Admissions', 'Placements', 'Cutoffs', 
+    'Scholarships', 'Rankings', 'Hostel', 'Reviews', 'Gallery', 
+    'Facilities', 'Faculty', 'News', 'Compare'
+  ];
+
+  const newsArticles = [
+    {
+      title: "Is XAT Tougher Than CAT? Check Full Comparison, Key...",
+      date: "10 Nov, 2025"
+    },
+    {
+      title: "Top MBA Colleges in India 2025 - Fees, Ranking, Exa...",
+      date: "22 Sept, 2025"
+    },
+    {
+      title: "IIM Ahmedabad MBA Placements 2025: BFSI Offers...",
+      date: "20 Sept, 2025"
+    },
+    {
+      title: "Top 10 IIMs in India: Rankings, Courses and Fee...",
+      date: "16 Sept, 2025"
+    }
+  ];
+
+  const highlights = [
+    { parameter: "Founded Year", value: "1961" },
+    { parameter: "Exams Accepted", value: "UGC NET, GRE, GMAT +2 more" },
+    { parameter: "Courses Offered", value: "5 Degrees (19 Courses)" }
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-
-      {/* Hero Section */}
-      <div 
-        className="relative h-80 bg-cover bg-center"
-        style={{ backgroundImage: `url(${college.image})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/70 to-gray-900/50"></div>
-        <div className="relative max-w-7xl mx-auto px-6 h-full flex flex-col justify-center text-white">
-          <div className="flex items-center gap-2 mb-4">
-            <GraduationCap className="w-5 h-5" />
-            <span className="text-sm">ESTABLISHED {college.established}</span>
-          </div>
-          <h1 className="text-5xl font-bold mb-4">{college.name}</h1>
-          <div className="flex items-center gap-4 text-sm">
-            <span className="flex items-center gap-1">
-              <MapPin className="w-4 h-4" />
-              {college.location}
-            </span>
-            <span>•</span>
-            <span>{college.type}</span>
-            <span>•</span>
-            <span>{college.duration}</span>
-          </div>
-          <div className="flex gap-3 mt-6">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium transition">
-              Apply Now
-            </button>
-            <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-2.5 rounded-lg font-medium transition border border-white/30">
-              Virtual Tour
-            </button>
+    <div className="min-h-screen  bg-gray-50">
+      {/* Breadcrumb */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-6 py-3">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <a href="#" className="hover:text-blue-600">Home</a>
+            <span>›</span>
+            <a href="#" className="hover:text-blue-600">IIMA</a>
+            <span>›</span>
+            <span className="text-blue-600 font-medium">College Info</span>
           </div>
         </div>
       </div>
 
-      {/* Tabs */}
+      {/* Header Section */}
       <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <div className="flex items-start justify-between">
+            <div className="flex gap-4">
+              {/* College Logo */}
+              <div className="w-20 h-20 bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <GraduationCap className="w-12 h-12 text-white" />
+              </div>
+
+              {/* College Info */}
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                  IIM Ahmedabad (IIMA): Fees, Cut Off, Placements 2025
+                </h1>
+                <div className="flex flex-wrap items-center gap-4 text-sm">
+                  <div className="flex items-center gap-1 text-blue-600">
+                    <MapPin className="w-4 h-4" />
+                    <span>Ahmedabad, Gujarat</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-orange-600">
+                    <BookOpen className="w-4 h-4" />
+                    <span>19 Courses</span>
+                  </div>
+                </div>
+                <div className="flex gap-6 mt-3 text-sm text-gray-600">
+                  <span>Public/Government</span>
+                  <span>|</span>
+                  <span>Estd. 1961</span>
+                  <span>|</span>
+                  <span className="font-semibold">NIRF #1 (Management) 2025</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3">
+              <button className="px-6 py-2.5 bg-red-400 hover:bg-red-500 text-white rounded-lg flex items-center gap-2 transition">
+                <Download className="w-4 h-4" />
+                Brochure
+              </button>
+              <button className="px-6 py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-lg flex items-center gap-2 transition">
+                <Phone className="w-4 h-4" />
+                Apply Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation Tabs */}
+      <div className="bg-white border-b sticky top-0 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex gap-8 text-sm">
-            {['Overview', 'Academics', 'Admissions', 'Costs & Aid', 'Campus Life'].map((tab) => (
+          <div className="flex items-center gap-1 overflow-x-auto">
+            {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab.toLowerCase())}
-                className={`py-4 border-b-2 transition ${
+                className={`px-4 py-3 text-sm font-medium whitespace-nowrap transition ${
                   activeTab === tab.toLowerCase()
-                    ? 'border-blue-600 text-blue-600 font-medium'
-                    : 'border-transparent text-gray-600 hover:text-gray-900'
+                    ? 'bg-slate-800 text-white rounded-t-lg'
+                    : 'text-gray-700 hover:bg-gray-100 rounded-t-lg'
                 }`}
               >
                 {tab}
@@ -207,133 +138,201 @@ export default function CollegeDetailPage() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column */}
           <div className="lg:col-span-2 space-y-6">
-            {/* At a Glance */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border">
-              <h2 className="text-2xl font-bold mb-6">At a Glance</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <StatCard 
-                  icon={<TrendingUp className="w-5 h-5 text-blue-600" />}
-                  label="Acceptance"
-                  value={college.acceptance}
-                />
-                <StatCard 
-                  icon={<GraduationCap className="w-5 h-5 text-blue-600" />}
-                  label="Avg CGPA"
-                  value={college.avgGPA}
-                />
-                <StatCard 
-                  icon={<Users className="w-5 h-5 text-blue-600" />}
-                  label="Grad Rate"
-                  value={college.gradRate}
-                />
-                <StatCard 
-                  icon={<Users className="w-5 h-5 text-blue-600" />}
-                  label="Ratio"
-                  value={college.ratio}
-                />
-              </div>
-
-              <p className="mt-6 text-gray-700 leading-relaxed">
-                {college.description}
-              </p>
+            {/* Last Updated */}
+            <div className="text-sm text-gray-600">
+              • Updated on <span className="font-semibold">26 Dec, 2025</span> by <span className="text-blue-600 font-semibold">Shivam Kumar</span>
             </div>
 
-            {/* Academic Programs */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Academic Programs</h2>
-                <button className="text-blue-600 text-sm font-medium hover:underline">
-                  View All Majors
-                </button>
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex border-b pb-2 text-sm font-medium text-gray-600">
-                  <div className="flex-1">Top Majors</div>
-                  <div className="w-32 text-right">Minors</div>
-                  <div className="w-24 text-right">Online</div>
+            {/* What's New Section */}
+            <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">What's new?</h2>
+              
+              <div className="space-y-4">
+                <div>
+                  <span className="text-red-600 font-bold text-sm">26 Dec, 2025 :</span>
+                  <span className="text-gray-700 ml-2">
+                    CAT 2025 Result has been announced. Candidates can download their scorecards from{' '}
+                    <a href="#" className="text-blue-600 hover:underline">iimcat.ac.in</a>. 
+                    Also, students can use the KollegeApply's <a href="#" className="text-blue-600 hover:underline font-semibold">CAT College Predictor</a> to check their admission chances.
+                  </span>
                 </div>
 
-                {college.topMajors.map((major, idx) => (
-                  <div key={idx} className="flex items-center py-3 hover:bg-gray-50 rounded-lg px-2 transition">
-                    <div className="flex items-center gap-3 flex-1">
-                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <FileText className="w-5 h-5 text-blue-600" />
-                      </div>
-                      <div>
-                        <div className="font-semibold">{major.name}</div>
-                        <div className="text-sm text-gray-500">{major.school}</div>
-                      </div>
+                <div>
+                  <span className="text-red-600 font-bold text-sm">13 Nov, 2025 :</span>
+                  <span className="text-gray-700 ml-2">
+                    IIM Ahmedabad has introduced India's first two-year Blended MBA Programme in Business Analytics & AI. 
+                    For the 2026 session (Round 1), the last date to apply is December 7, and the admit cards will be released on December 11. 
+                    The IIMA test is scheduled to take place on December 14, 2025.
+                  </span>
+                </div>
+              </div>
+
+              <button className="text-blue-600 font-semibold text-sm mt-4 hover:underline">
+                Read more...
+              </button>
+            </div>
+
+            {/* Latest News */}
+            <div className="bg-white rounded-xl p-6 border">
+              <h3 className="font-bold text-lg mb-4">IIMA Latest news and articles</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {newsArticles.map((article, idx) => (
+                  <div key={idx} className="border rounded-lg p-4 hover:shadow-md transition">
+                    <h4 className="font-semibold text-sm text-gray-900 mb-2 line-clamp-2">
+                      {article.title}
+                    </h4>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-500 flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {article.date}
+                      </span>
+                      <button className="text-blue-600 text-xs font-semibold hover:underline">
+                        Read more..
+                      </button>
                     </div>
-                    <button className="text-gray-400 hover:text-gray-600">
-                      →
-                    </button>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
 
-          {/* Right Column */}
-          <div className="space-y-6">
-            {/* Similar Colleges */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border">
-              <h3 className="font-bold text-lg mb-4">Similar Colleges</h3>
-              <div className="space-y-3">
-                {similarColleges.map((sim, idx) => (
-                  <a 
-                    key={idx} 
-                    href={`/colleges/${sim.slug}`}
-                    className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition cursor-pointer no-underline text-inherit hover:text-inherit"
-                  >
-                    <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold">
-                      {sim.logo}
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-semibold text-sm">{sim.name}</div>
-                      <div className="text-xs text-gray-500">{sim.location}</div>
-                    </div>
-                    <span className="text-gray-400 hover:text-gray-600">→</span>
-                  </a>
-                ))}
+            {/* About IIMA */}
+            <div className="bg-white rounded-xl p-6 border">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">About IIMA</h2>
+              
+              <div className="text-gray-700 leading-relaxed space-y-4">
+                <p>
+                  Indian Institute of Management Ahmedabad, famously known as IIM Ahmedabad or IIMA. It was established in <span className="font-semibold">1961</span> under the Government of India in Vastrapur, Ahmedabad. 
+                  IIMA is an institute of National Importance and has been accredited by the European Foundation for Management Development (EFMD) as the first B School in the year of 2003.
+                </p>
+
+                <p>
+                  IIM Ahmedabad Ranks #1 in India by the NIRF Ranking 2025, #1 amongst B-Schools in India by the Businessworld since 2024, #43 for IIMA Executive Education by Financial Times 
+                  in 2024, #1 for IIMA 1 Year MBA program by Financial Times Times Global MBA Ranking 2025.
+                </p>
+
+                <p>
+                  IIMA offers an MBA course with 4 different specialisations, such as Food and Agriculture Management, Post Graduate Program in Management for Executive, and Blended 
+                  Postgraduate Program in Management. Additionally, IIM Ahmedabad also offers an ePost Graduate Diploma in Advanced Business Analytics. IIM Ahmedabad Free Courses 
+                  include online courses at EDX in Marketing, Finance, HR, Product Development, operations, and Analytics.
+                </p>
+
+                <p>
+                  Admission to IIM Ahmedabad is based on CAT entrance exam scores. IIM Ahmedabad PGP 2023-25 Batch size is <span className="font-semibold">404 students</span> and{' '}
+                  <span className="font-semibold">47</span> for the FABM program, with an average work experience of 26 months. IIM Ahmedabad Highest Package reached this year is{' '}
+                  <span className="font-semibold">INR 1.1 Crore Per Annum</span>, while the average package stood at <span className="font-semibold">INR 30 LPA</span>. 
+                  Some of the IIMA Top Recruiters were Boston Consulting Group, TCS, Goldman Sachs, etc.
+                </p>
               </div>
-              <button className="w-full mt-4 py-2 border border-blue-600 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 transition">
-                Compare All
+
+              <button className="text-blue-600 font-semibold text-sm mt-4 hover:underline">
+                Read More...
               </button>
             </div>
 
-            {/* Admissions Info */}
-            <div className="bg-blue-600 text-white rounded-xl p-6 shadow-sm">
-              <h3 className="font-bold text-xl mb-4">Fall 2024 Admissions</h3>
-              <div className="space-y-4">
-                <AdmissionItem 
-                  icon={<Calendar className="w-5 h-5" />}
-                  label={college.admissions.earlyDeadline}
-                  sublabel="Early Decision Deadline"
-                />
-                <AdmissionItem 
-                  icon={<Calendar className="w-5 h-5" />}
-                  label={college.admissions.regularDeadline}
-                  sublabel="Regular Decision Deadline"
-                />
-                <AdmissionItem 
-                  icon={<DollarSign className="w-5 h-5" />}
-                  label={college.admissions.applicationFee}
-                  sublabel="Application Fee"
-                />
+            {/* IIMA Highlights */}
+            <div className="bg-white rounded-xl p-6 border">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">IIMA Highlights</h2>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-blue-500 text-white">
+                      <th className="px-6 py-3 text-left font-semibold">Parameter</th>
+                      <th className="px-6 py-3 text-left font-semibold">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {highlights.map((item, idx) => (
+                      <tr key={idx} className={idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                        <td className="px-6 py-4 font-medium text-gray-900">{item.parameter}</td>
+                        <td className="px-6 py-4 text-gray-700">
+                          {item.parameter === "Exams Accepted" ? (
+                            <span>
+                              <a href="#" className="text-blue-600 hover:underline">UGC NET</a>,{' '}
+                              <a href="#" className="text-blue-600 hover:underline">GRE</a>,{' '}
+                              <a href="#" className="text-blue-600 hover:underline">GMAT</a> +2 more
+                            </span>
+                          ) : item.parameter === "Courses Offered" ? (
+                            <a href="#" className="text-blue-600 hover:underline">{item.value}</a>
+                          ) : (
+                            item.value
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Sidebar */}
+          <div className="space-y-6">
+            {/* Get Started Card */}
+            <div className="bg-slate-800 text-white rounded-xl p-6">
+              <h3 className="font-bold text-lg mb-4">Get Started!</h3>
+              <p className="text-sm mb-2">What are you waiting for?</p>
+              <p className="text-xs text-gray-300 mb-6">Discover Your Education Journey With Us</p>
+              
+              <div className="space-y-3">
+                <button className="w-full px-6 py-3 bg-white text-slate-800 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center justify-center gap-2">
+                  <Phone className="w-4 h-4" />
+                  Enquiry Now
+                </button>
+                <button className="w-full px-6 py-3 bg-red-400 hover:bg-red-500 text-white rounded-lg font-semibold transition flex items-center justify-center gap-2">
+                  <Download className="w-4 h-4" />
+                  Brochure
+                </button>
+                <button className="w-full px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-semibold transition flex items-center justify-center gap-2">
+                  Apply Now
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Contact Information */}
+            <div className="bg-slate-800 text-white rounded-xl p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Phone className="w-5 h-5" />
+                <h3 className="font-bold text-lg">Contact Information</h3>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-white/20">
-                <div className="text-sm font-medium mb-2">
-                  {college.entranceExam.split(':')[0]} Range
+              {/* Map Image */}
+              <div className="relative h-48 bg-gray-200 rounded-lg mb-4 overflow-hidden">
+                <img 
+                  src="https://maps.googleapis.com/maps/api/staticmap?center=Vastrapur,Ahmedabad,Gujarat&zoom=13&size=400x300&key=YOUR_API_KEY" 
+                  alt="Map"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://via.placeholder.com/400x300/e5e7eb/6b7280?text=Map+View';
+                  }}
+                />
+                <button className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-semibold flex items-center gap-2 shadow-lg">
+                  <MapPin className="w-4 h-4" />
+                  View On Map
+                </button>
+              </div>
+
+              <div className="space-y-3 text-sm">
+                <div>
+                  <div className="text-gray-300 mb-1">Address-</div>
+                  <div className="font-medium">Vastrapur, Ahmedabad, Gujarat - 380015</div>
                 </div>
-                <div className="text-xs text-blue-100 mb-2">{college.admissions.jeeRange}</div>
-                <div className="h-2 bg-white/20 rounded-full overflow-hidden">
-                  <div className="h-full bg-white rounded-full" style={{ width: '85%' }}></div>
+                <div>
+                  <div className="text-gray-300 mb-1">Pincode-</div>
+                  <div className="font-medium">380015</div>
+                </div>
+                <div>
+                  <div className="text-gray-300 mb-1">Phone-</div>
+                  <div className="font-medium text-blue-400">
+                    79XXXXXXX56
+                    <span className="text-xs text-gray-400 ml-2">(for general query)</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -342,28 +341,6 @@ export default function CollegeDetailPage() {
       </div>
     </div>
   );
-}
+};
 
-function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return (
-    <div>
-      <div className="flex items-center gap-2 mb-2">
-        {icon}
-        <span className="text-sm text-gray-600">{label}</span>
-      </div>
-      <div className="text-2xl font-bold">{value}</div>
-    </div>
-  );
-}
-
-function AdmissionItem({ icon, label, sublabel }: { icon: React.ReactNode; label: string; sublabel: string }) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="mt-1">{icon}</div>
-      <div>
-        <div className="font-semibold">{label}</div>
-        <div className="text-sm text-blue-100">{sublabel}</div>
-      </div>
-    </div>
-  );
-}
+export default CollegeDetailPage;

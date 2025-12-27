@@ -1,105 +1,219 @@
 "use client";
-
-import Link from "next/link";
 import React, { useState } from "react";
+import { ChevronDown, Menu, X, GraduationCap } from "lucide-react";
+import Link from "next/link";
 
 const Navbar: React.FC = () => {
-  const [open, setOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const menuItems = [
+    {
+      label: "All Streams",
+      hasDropdown: true,
+      items: ["Engineering", "Medical", "Management", "Arts", "Science"],
+    },
+    {
+      label: "All Courses",
+      hasDropdown: true,
+      items: ["Undergraduate", "Postgraduate", "Diploma", "Certification"],
+    },
+    {
+      label: "Engineering",
+      hasDropdown: true,
+      items: ["Computer Science", "Mechanical", "Electrical", "Civil"],
+    },
+    {
+      label: "Management",
+      hasDropdown: true,
+      items: ["MBA", "BBA", "Finance", "Marketing"],
+    },
+    {
+      label: "Medical",
+      hasDropdown: true,
+      items: ["MBBS", "BDS", "Nursing", "Pharmacy"],
+    },
+    {
+      label: "Design",
+      hasDropdown: true,
+      items: ["Fashion", "Interior", "Graphic", "Product"],
+    },
+    {
+      label: "Explore",
+      hasDropdown: true,
+      items: ["Colleges", "Exams", "Results", "Admissions"],
+    },
+    {
+      label: "Online",
+      hasDropdown: false,
+    },
+  ];
 
   return (
-    <nav className="bg-white border-b border-gray-100 font-sans">
-      <div className="flex items-center justify-between px-6 py-3">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 cursor-pointer">
-          <div className="text-blue-600">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
-              <path d="M3.88 10.59L12 15l8.12-4.41V12.5c0 1.25-1.5 2.5-4 3s-5.5.5-8 0-4-1.75-4-3v-1.91z" />
-            </svg>
-          </div>
-          <span className="text-xl font-bold text-[#1a1a1a]">
-            College Campus
-          </span>
-        </Link>
+    <nav className="bg-white shadow-lg sticky top-0 z-50">
+      {/* Top Bar */}
+      <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex items-center gap-3 group cursor-pointer">
+              <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-2 rounded-lg transform group-hover:scale-110 transition-transform shadow-md">
+                <GraduationCap className="w-7 h-7 text-white" />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent tracking-tight">
+                College Campus
+              </span>
+            </div>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          <div className="flex gap-8 text-sm font-semibold text-gray-700">
-            <a href="#" className="hover:text-blue-600">Search</a>
-            <a href="#" className="hover:text-blue-600">My List</a>
-            <a href="#" className="hover:text-blue-600">Blog</a>
-            <a href="#" className="hover:text-blue-600">Profile</a>
-          </div>
+            {/* Desktop Auth Buttons */}
+            <div className="hidden md:flex items-center gap-4">
+              <Link href={"/login"}>
+                <button className="px-6 py-2 text-gray-700 font-medium hover:text-blue-600 transition-colors">
+                  Login
+                </button>
+              </Link>
+              <Link href={"/sign-up"}>
+                <button className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all transform hover:scale-105 shadow-md flex items-center gap-2">
+                  Sign Up
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
+                </button>
+              </Link>
+            </div>
 
-          <div className="flex gap-3">
-            <Link
-              href="/login"
-              className="px-6 py-2 text-sm font-bold text-white bg-[#3182ce] rounded-lg hover:bg-blue-700"
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden text-gray-700 p-2 hover:bg-gray-100 rounded-lg transition-colors"
             >
-              Login
-            </Link>
-
-            <Link
-              href="/sign-up"
-              className="px-6 py-2 text-sm font-bold text-gray-700 bg-[#f1f3f5] rounded-lg hover:bg-gray-200"
-            >
-              Sign up
-            </Link>
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
           </div>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-700"
-          onClick={() => setOpen(!open)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
       </div>
 
-      {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden px-6 py-4 pb-4 space-y-4 text-sm font-semibold text-gray-700">
-          <a href="#" className="block hover:text-blue-600">Search</a>
-          <a href="#" className="block hover:text-blue-600">My List</a>
-          <a href="#" className="block hover:text-blue-600">Blog</a>
-          <a href="#" className="block hover:text-blue-600">Profile</a>
+      {/* Navigation Menu */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center justify-center gap-1 py-3">
+            {menuItems.map((item, index) => (
+              <div
+                key={index}
+                className="relative"
+                onMouseEnter={() =>
+                  item.hasDropdown && setActiveDropdown(item.label)
+                }
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button className="flex items-center gap-1 px-4 py-2 text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all group">
+                  {item.label}
+                  {item.hasDropdown && (
+                    <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform" />
+                  )}
+                </button>
 
-          <div className="flex gap-3 pt-3">
-            <Link
-              href="/login"
-              className="flex-1 text-center px-4 py-2 font-bold text-white bg-[#3182ce] rounded-lg"
-            >
-              Login
-            </Link>
-
-            <Link
-              href="/sign-up"
-              className="flex-1 text-center px-4 py-2 font-bold text-gray-700 bg-[#f1f3f5] rounded-lg"
-            >
-              Sign up
-            </Link>
+                {/* Dropdown Menu */}
+                {item.hasDropdown && activeDropdown === item.label && (
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-2 animate-fadeIn">
+                    {item.items?.map((subItem, subIndex) => (
+                      <a
+                        key={subIndex}
+                        href="#"
+                        className="block px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors font-medium"
+                      >
+                        {subItem}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden py-4 space-y-2 animate-fadeIn">
+              {menuItems.map((item, index) => (
+                <div key={index}>
+                  <button
+                    onClick={() =>
+                      setActiveDropdown(
+                        activeDropdown === item.label ? null : item.label
+                      )
+                    }
+                    className="w-full flex items-center justify-between px-4 py-3 text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors"
+                  >
+                    {item.label}
+                    {item.hasDropdown && (
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${
+                          activeDropdown === item.label ? "rotate-180" : ""
+                        }`}
+                      />
+                    )}
+                  </button>
+
+                  {item.hasDropdown && activeDropdown === item.label && (
+                    <div className="ml-4 mt-2 space-y-1">
+                      {item.items?.map((subItem, subIndex) => (
+                        <a
+                          key={subIndex}
+                          href="#"
+                          className="block px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        >
+                          {subItem}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {/* Mobile Auth Buttons */}
+              <div className="flex flex-col gap-3 pt-4 border-t border-gray-200">
+                <button className="w-full px-6 py-3 text-gray-700 font-medium bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                  Login
+                </button>
+                <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors shadow-md">
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.2s ease-out;
+        }
+      `}</style>
     </nav>
   );
 };
