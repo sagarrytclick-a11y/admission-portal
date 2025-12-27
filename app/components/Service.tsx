@@ -53,7 +53,7 @@ const PremiumServices = () => {
           {services.map((service, i) => (
             <div 
               key={i} 
-              className="bg-white p-10 rounded-3xl text-left border border-transparent hover:border-gray-200 transition-all duration-300 hover:shadow-xl group"
+              className="bg-white shadow-sm p-10 rounded-3xl text-left border border-transparent hover:border-gray-200 transition-all duration-300 hover:shadow-xl group"
             >
               {/* Icon Container */}
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-8 transition-transform group-hover:scale-110 ${service.color}`}>

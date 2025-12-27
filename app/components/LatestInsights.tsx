@@ -27,12 +27,9 @@ const posts = [
 export default function LatestInsights() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
-      
       {/* Header */}
       <div className="flex justify-between items-center mb-10">
-        <h2 className="text-3xl font-bold text-gray-900">
-          Latest Insights
-        </h2>
+        <h2 className="text-3xl font-bold text-gray-900">Latest Insights</h2>
         <a href="#" className="text-blue-600 font-medium hover:underline">
           View all
         </a>
@@ -40,13 +37,12 @@ export default function LatestInsights() {
 
       {/* Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        
         {/* LEFT: Blog List */}
         <div className="lg:col-span-2 space-y-6">
           {posts.map((post, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-100 rounded-xl p-6 hover:shadow-sm transition"
+              className="bg-white border shadow-sm border-gray-100 rounded-xl p-6 hover:shadow-sm transition"
             >
               <span
                 className={`text-xs font-semibold uppercase tracking-wide ${post.categoryColor}`}
@@ -72,7 +68,7 @@ export default function LatestInsights() {
           ))}
 
           {/* Load More */}
-          <div className="pt-4">
+          <div className="pt-4 shadow-sm">
             <button className="px-6 py-3 text-sm font-semibold text-white bg-[#3182ce] hover:bg-blue-700 rounded-lg transition">
               Load More Blogs
             </button>
@@ -81,9 +77,8 @@ export default function LatestInsights() {
 
         {/* RIGHT: Sidebar */}
         <aside className="space-y-6">
-          
           {/* Popular Topics */}
-          <div className="bg-white border border-gray-100 rounded-xl p-6">
+          <div className="bg-white border shadow-sm border-gray-100 rounded-xl p-6">
             <h4 className="text-sm font-semibold text-gray-900 mb-4">
               Popular Topics
             </h4>
@@ -107,7 +102,7 @@ export default function LatestInsights() {
           </div>
 
           {/* Helpful Links */}
-          <div className="bg-white border border-gray-100 rounded-xl p-6">
+          <div className="bg-white border shadow-sm border-gray-100 rounded-xl p-6">
             <h4 className="text-sm font-semibold text-gray-900 mb-4">
               Helpful Resources
             </h4>
@@ -140,4 +135,3 @@ export default function LatestInsights() {
     </section>
   );
 }
-

@@ -1,4 +1,4 @@
-import { Calendar, ExternalLink, Info } from 'lucide-react';
+import { Calendar, ExternalLink, Info } from "lucide-react";
 
 type Exam = {
   id: number;
@@ -10,79 +10,78 @@ type Exam = {
 };
 
 const exams: Exam[] = [
-    {
-      id: 1,
-      logo: "IBS®",
-      name: "IBSAT",
-      title: "IBSAT",
-      mode: "Offline",
-      date: "27 Dec, 2025",
-    },
-    {
-      id: 2,
-      logo: "SYMBIOSIS slat",
-      name: "SLAT",
-      title: "SLAT",
-      mode: "Online",
-      date: "28 Dec, 2025",
-    },
-    {
-      id: 3,
-      logo: "XAT",
-      name: "XAT",
-      title: "MBA/PGDM",
-      mode: "Online",
-      date: "4 Jan, 2026",
-    },
-    {
-      id: 4,
-      logo: "WUD",
-      name: "WUD Aptitude Test",
-      title: "",
-      mode: "Online",
-      date: "4 Jan, 2026",
-    },
-  
-    // ➕ New 4 Cards
-  
-    {
-      id: 5,
-      logo: "CAT",
-      name: "CAT",
-      title: "MBA",
-      mode: "Online",
-      date: "30 Nov, 2025",
-    },
-    {
-      id: 6,
-      logo: "NMAT",
-      name: "NMAT by GMAC",
-      title: "MBA/PGDM",
-      mode: "Online",
-      date: "15 Oct, 2025",
-    },
-    {
-      id: 7,
-      logo: "CMAT",
-      name: "CMAT",
-      title: "MBA",
-      mode: "Online",
-      date: "20 Jan, 2026",
-    },
-    {
-      id: 8,
-      logo: "MAT",
-      name: "MAT",
-      title: "MBA/PGDM",
-      mode: "Online",
-      date: "10 Feb, 2026",
-    },
-  ];
-  
+  {
+    id: 1,
+    logo: "IBS®",
+    name: "IBSAT",
+    title: "IBSAT",
+    mode: "Offline",
+    date: "27 Dec, 2025",
+  },
+  {
+    id: 2,
+    logo: "SYMBIOSIS slat",
+    name: "SLAT",
+    title: "SLAT",
+    mode: "Online",
+    date: "28 Dec, 2025",
+  },
+  {
+    id: 3,
+    logo: "XAT",
+    name: "XAT",
+    title: "MBA/PGDM",
+    mode: "Online",
+    date: "4 Jan, 2026",
+  },
+  {
+    id: 4,
+    logo: "WUD",
+    name: "WUD Aptitude Test",
+    title: "",
+    mode: "Online",
+    date: "4 Jan, 2026",
+  },
+
+  // ➕ New 4 Cards
+
+  {
+    id: 5,
+    logo: "CAT",
+    name: "CAT",
+    title: "MBA",
+    mode: "Online",
+    date: "30 Nov, 2025",
+  },
+  {
+    id: 6,
+    logo: "NMAT",
+    name: "NMAT by GMAC",
+    title: "MBA/PGDM",
+    mode: "Online",
+    date: "15 Oct, 2025",
+  },
+  {
+    id: 7,
+    logo: "CMAT",
+    name: "CMAT",
+    title: "MBA",
+    mode: "Online",
+    date: "20 Jan, 2026",
+  },
+  {
+    id: 8,
+    logo: "MAT",
+    name: "MAT",
+    title: "MBA/PGDM",
+    mode: "Online",
+    date: "10 Feb, 2026",
+  },
+];
 
 export default function UpcomingExams() {
   return (
-    <section className="max-w-7xl bg-[#f8f9fa] mx-auto px-6 py-10  min-h-screen">
+    <section className="max-w-7xl bg-[#f8f9fa] mx-auto px-6 py-15 ">
       <h2 className="text-3xl font-bold mb-8 text-gray-800">Upcoming Exams</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -98,19 +97,20 @@ export default function UpcomingExams() {
 
 function ExamCard({ exam }: { exam: Exam }) {
   return (
-    <div className="group bg-white border border-gray-100 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-blue-400 hover:shadow-md">
-      
+    <div className="group shadow-sm bg-white border border-gray-100 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-blue-400 hover:shadow-md">
       <div className="p-5">
         {/* Top Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="h-10 w-12 flex items-center justify-center bg-gray-50 rounded-lg border border-gray-100 text-[10px] font-black text-gray-700 uppercase tracking-tighter text-center leading-tight">
             {exam.logo}
           </div>
-          <span className={`text-[10px] uppercase tracking-wider px-2 py-1 rounded-md font-bold ${
-            exam.mode === "Online" 
-              ? "bg-green-50 text-green-600" 
-              : "bg-orange-50 text-orange-600"
-          }`}>
+          <span
+            className={`text-[10px] uppercase tracking-wider px-2 py-1 rounded-md font-bold ${
+              exam.mode === "Online"
+                ? "bg-green-50 text-green-600"
+                : "bg-orange-50 text-orange-600"
+            }`}
+          >
             {exam.mode}
           </span>
         </div>

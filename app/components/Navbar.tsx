@@ -56,14 +56,14 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex items-center gap-3 group cursor-pointer">
+            <Link href={"/"} className="flex items-center gap-3 group cursor-pointer">
               <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-2 rounded-lg transform group-hover:scale-110 transition-transform shadow-md">
                 <GraduationCap className="w-7 h-7 text-white" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent tracking-tight">
                 College Campus
               </span>
-            </div>
+            </Link>
 
             {/* Desktop Auth Buttons */}
             <div className="hidden md:flex items-center gap-4">
