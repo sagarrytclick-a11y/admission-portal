@@ -1,26 +1,37 @@
-import Image from "next/image";
+"use client"
+import React from "react";
+import BlogCard, { BlogPost } from "./BlogCard";
 
-const posts = [
+const posts: BlogPost[] = [
   {
+    id: "1",
     category: "GUIDE",
     categoryColor: "text-blue-600",
     title: "Top 10 Tips for Writing a Winning Personal Statement",
     desc: "Crafting a compelling essay is key to standing out. Here's how to tell your story effectively.",
     image: "/images/post1.png",
+    readTime: "5 min read",
+    tags: ["admissions", "essays"],
   },
   {
+    id: "2",
     category: "FINANCIAL AID",
     categoryColor: "text-green-600",
     title: "Navigating the FAFSA: A Step-by-Step Tutorial",
     desc: "Don't leave money on the table. We break down the financial aid process simply.",
     image: "/images/post2.png",
+    readTime: "8 min read",
+    tags: ["finance", "scholarships"],
   },
   {
+    id: "3",
     category: "CAMPUS LIFE",
     categoryColor: "text-purple-600",
     title: "Choosing the Right Campus Culture for You",
     desc: "Big city or college town? Understand how environment impacts your college success.",
     image: "/images/post3.png",
+    readTime: "6 min read",
+    tags: ["campus", "lifestyle"],
   },
 ];
 
@@ -40,31 +51,11 @@ export default function LatestInsights() {
         {/* LEFT: Blog List */}
         <div className="lg:col-span-2 space-y-6">
           {posts.map((post, index) => (
-            <div
-              key={index}
-              className="bg-white border shadow-sm border-gray-100 rounded-xl p-6 hover:shadow-sm transition"
-            >
-              <span
-                className={`text-xs font-semibold uppercase tracking-wide ${post.categoryColor}`}
-              >
-                {post.category}
-              </span>
-
-              <h3 className="mt-2 text-xl font-semibold text-gray-900">
-                {post.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-                {post.desc}
-              </p>
-
-              <a
-                href="#"
-                className="inline-block mt-3 text-sm font-semibold text-blue-600 hover:underline"
-              >
-                Read article →
-              </a>
-            </div>
+            <BlogCard
+              key={post.id || index}
+              post={post}
+              onClick={(post) => console.log('Blog clicked:', post.title)}
+            />
           ))}
 
           {/* Load More */}
