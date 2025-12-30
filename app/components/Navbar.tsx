@@ -61,9 +61,17 @@ const Navbar: React.FC = () => {
                 <GraduationCap className="w-7 h-7 text-white" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent tracking-tight">
-                College Campus
-              </span>
+                Admission Campus
+               </span>
             </Link>
+
+
+            <div className="hidden md:flex items-center gap-7 font-semibold">
+              <Link href={'/'} >Home</Link>
+              <Link href={'/college'} >Colleges</Link>
+              <Link href={'/exam'} >Exams</Link>
+              <Link href={'/blog'} >Blogs</Link>
+            </div>
 
             {/* Desktop Auth Buttons */}
             <div className="hidden md:flex items-center gap-4">
@@ -162,9 +170,8 @@ const Navbar: React.FC = () => {
                     {item.label}
                     {item.hasDropdown && (
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform ${
-                          activeDropdown === item.label ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 h-4 transition-transform ${activeDropdown === item.label ? "rotate-180" : ""
+                          }`}
                       />
                     )}
                   </button>
