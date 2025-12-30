@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu, X, GraduationCap } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -56,13 +57,27 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href={"/"} className="flex items-center gap-3 group cursor-pointer">
-              <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-2 rounded-lg transform group-hover:scale-110 transition-transform shadow-md">
-                <GraduationCap className="w-7 h-7 text-white" />
+
+
+
+
+            <Link href="/" className="flex items-center gap-3 group cursor-pointer">
+              <div className="relative flex items-center gap-3">
+                {/* Image Component Implementation:
+        - Path starts from / (referencing the public folder)
+        - 'priority' added because this is likely in the Navbar (LCP element)
+    */}
+                <div className="relative  transform group-hover:scale-110 transition-transform">
+                  <Image
+                    src="/logo.png"
+                    alt="Admission Campus Logo"
+                    width={100}
+                    height={100}
+                    priority
+                    className="object-contain"
+                  />
+                </div>
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent tracking-tight">
-                Admission Campus
-               </span>
             </Link>
 
 
@@ -132,22 +147,28 @@ const Navbar: React.FC = () => {
                 <button className="flex items-center gap-1 px-4 py-2 text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all group">
                   {item.label}
                   {item.hasDropdown && (
-                    <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform" />
+                    <ChevronDown className="w-6 h-6 group-hover:rotate-180 transition-transform" />
                   )}
                 </button>
 
                 {/* Dropdown Menu */}
+                {/* Dropdown Menu */}
                 {item.hasDropdown && activeDropdown === item.label && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-2 animate-fadeIn">
-                    {item.items?.map((subItem, subIndex) => (
-                      <a
-                        key={subIndex}
-                        href="#"
-                        className="block px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors font-medium"
-                      >
-                        {subItem}
-                      </a>
-                    ))}
+                  <div className="absolute top-full left-0 w-56 pt-2 z-50 animate-fadeIn">
+                    {/* ^ Removed mt-2, added pt-2. This "pt-2" acts as a bridge. */}
+
+                    <div className="bg-white rounded-lg shadow-xl border border-gray-200 py-2">
+                      {/* ^ The actual styled box starts here */}
+                      {item.items?.map((subItem, subIndex) => (
+                        <a
+                          key={subIndex}
+                          href="#"
+                          className="block px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors font-medium"
+                        >
+                          {subItem}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

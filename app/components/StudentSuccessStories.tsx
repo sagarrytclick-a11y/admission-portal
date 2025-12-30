@@ -69,7 +69,7 @@ const StudentSuccessStories: React.FC = () => {
           {testimonials.map((item) => (
             <div 
               key={item.id} 
-              className="bg-[#f9fbfd] p-10 rounded-[2.5rem] border border-transparent hover:border-gray-200 transition-all duration-300 group"
+              className="bg-[#f9fbfd] border-1 border-black p-10 rounded-[2.5rem] border  hover:border-gray-200 transition-all duration-300 group"
             >
               {/* Star Rating using React Icons */}
               <div className="flex gap-1 mb-6">

@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { blob } from 'stream/consumers';
 
 export interface BlogPost {
   id?: string;
@@ -99,16 +101,16 @@ const BlogCard: React.FC<BlogCardProps> = ({
             {post.readTime && <span>{post.readTime}</span>}
           </div>
 
-          <a
-            href={post.slug ? `/blog/${post.slug}` : '#'}
+          <Link
+            href={`/blog/${post.slug}`}
             className="text-sm font-semibold text-blue-600 hover:underline"
-            onClick={(e) => {
-              e.stopPropagation();
-              if (onClick) e.preventDefault();
-            }}
+            // onClick={(e) => {
+            //   e.stopPropagation();
+            //   if (onClick) e.preventDefault();
+            // }}
           >
             Read article →
-          </a>
+          </Link>
         </div>
 
         {post.tags && post.tags.length > 0 && (
