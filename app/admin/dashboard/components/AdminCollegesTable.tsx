@@ -45,6 +45,7 @@ export function AdminCollegesTable() {
             ],
             contactInfo: {
               address: "Cambridge, MA 02138, USA",
+              pincode: "02138",
               phone: "+1 (617) 495-1000",
               mapImageUrl: "/images/harvard-map.jpg"
             }
@@ -68,6 +69,7 @@ export function AdminCollegesTable() {
             ],
             contactInfo: {
               address: "Stanford, CA 94305, USA",
+              pincode: "94305",
               phone: "+1 (650) 723-2300",
               mapImageUrl: "/images/stanford-map.jpg"
             }

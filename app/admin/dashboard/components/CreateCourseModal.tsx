@@ -62,7 +62,7 @@ export function CreateCourseModal({ isOpen, onClose }: CreateCourseModalProps) {
             description: "Harvard University is a private Ivy League research university in Cambridge, Massachusetts.",
             highlights: [],
             newsArticles: [],
-            contactInfo: { address: "", phone: "" }
+            contactInfo: { address: "", pincode: "", phone: "" }
           },
           {
             id: "2",
@@ -75,7 +75,7 @@ export function CreateCourseModal({ isOpen, onClose }: CreateCourseModalProps) {
             description: "Stanford University is a private research university in Stanford, California.",
             highlights: [],
             newsArticles: [],
-            contactInfo: { address: "", phone: "" }
+            contactInfo: { address: "", pincode: "", phone: "" }
           }
         ];
         setColleges(mockColleges);
