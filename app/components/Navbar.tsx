@@ -86,6 +86,8 @@ const Navbar: React.FC = () => {
               <Link href={'/college'} >Colleges</Link>
               <Link href={'/exam'} >Exams</Link>
               <Link href={'/blog'} >Blogs</Link>
+              <Link href={'/about'} >About</Link>
+              <Link href={'/contact'} >Contact</Link>
             </div>
 
             {/* Desktop Auth Buttons */}
