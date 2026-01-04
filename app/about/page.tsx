@@ -73,7 +73,7 @@ export default function AboutPage() {
         <div className="relative max-w-7xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#EFEBE0] rounded-full mb-6">
             <GraduationCap className="w-5 h-5 text-[#3B82F6]" />
-            <span className="text-sm font-semibold text-[#2D2D2D]">About Key2Global</span>
+            <span className="text-sm font-semibold text-[#2D2D2D]">About Admission Campus</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">

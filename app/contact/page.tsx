@@ -42,7 +42,7 @@ export default function ContactPage() {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email Us",
-      content: "support@key2global.com",
+      content: "support@admissioncampus.in",
       subContent: "We'll respond within 24 hours",
       color: "bg-[#EFEBE0] text-[#3B82F6]",
     },
